@@ -69,6 +69,11 @@ class _ExpandableTableBodyState extends State<ExpandableTableBody>
           verticalExpanded: rowParent == null || rowParent.isExpanded,
           onTap: () {
             setState(() {
+              if (row.isExpanded && row.children.isNotEmpty) {
+                for (var element in row.children) {
+                  element.isExpanded = !element.isExpanded;
+                }
+              }
               row.isExpanded = !row.isExpanded;
             });
           },
